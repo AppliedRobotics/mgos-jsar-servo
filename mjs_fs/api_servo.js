@@ -1,3 +1,4 @@
+/*
 let Servo = {
     _create: ffi('void* mgos_servo_create()'),
     _create_full: ffi('void* mgos_servo_create_full(int, int, int)'),
@@ -91,3 +92,4 @@ let Servo = {
         },
     }
 };
+*/

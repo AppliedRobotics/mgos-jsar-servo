@@ -1,4 +1,4 @@
-
+/*
 let Servo = {
     init: function() {
         return ffi('int mgos_jsar_can_init(void)');
@@ -18,3 +18,4 @@ let Servo = {
 
 };
 
+*/
