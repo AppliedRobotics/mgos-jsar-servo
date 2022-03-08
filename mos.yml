@@ -1,0 +1,22 @@
+author: applied ropbotics
+type: lib
+description: Servo library for Applied Robotics ESP-JS-AR board 
+version: 1.0
+
+tags:
+  - cpp
+
+sources:
+  - src
+
+includes:
+  - include
+
+filesystem:
+  - fs
+
+libs:
+  - location: https://github.com/mongoose-os-libs/pwm
+
+
+manifest_version: 2017-09-29
