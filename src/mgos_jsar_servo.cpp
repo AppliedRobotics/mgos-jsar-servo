@@ -21,3 +21,14 @@ uint8_t mgos_servo_attach(Servo *obj, int pin)
     return obj->attach(pin);
 }
 
+/*
+ Write microseconds
+ */
+void mgos_servo_write_us(Servo *obj, uint16_t value)
+{
+    if (obj == nullptr) {
+        return;
+    }
+
+    obj->writeMicroseconds(value);
+}
