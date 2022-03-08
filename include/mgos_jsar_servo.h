@@ -67,4 +67,4 @@ void mgos_servo_write_us(Servo *obj, uint16_t value);
 }
 #endif /* __cplusplus */
 
-#endif // MGOS_SERVO_H 
+#endif // MGOS_SERVO_H
