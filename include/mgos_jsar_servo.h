@@ -23,6 +23,11 @@ Servo* mgos_servo_create();
 uint8_t mgos_servo_attach(Servo * obj, int pin);
 
 /*
+ Write microseconds
+ */
+void mgos_servo_write_us(Servo *obj, uint16_t value);
+
+/*
  * deletes the object by calling the destructor
  */
 //void mgos_servo_delete(Servo* pThis);
