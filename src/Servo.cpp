@@ -67,7 +67,7 @@ uint8_t Servo::writeMicroseconds(uint16_t value)
     float duty = (float) value / PERIOD_US;
     if (mgos_pwm_set(servos[servoIndex_], PWM_FREQ, duty) == true) {
         us_ = value;
-        return 1;
+        return value;
     }
     return 0;
 }
