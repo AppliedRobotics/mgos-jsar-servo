@@ -57,7 +57,7 @@ void Servo::write(int value)
     writeMicroseconds(value);*/
 }
 
-uint8_t Servo::writeMicroseconds(uint16_t value)
+uint16_t Servo::writeMicroseconds(uint16_t value)
 {
     if (value < min_pulse_) // ensure pulse width is valid
         value = min_pulse_;
