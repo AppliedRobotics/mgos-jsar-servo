@@ -45,3 +45,15 @@ void mgos_servo_write_us(Servo *obj, uint16_t value)
 
     obj->writeMicroseconds(value);
 }
+
+/*
+ Read microseconds
+ */
+uint16_t mgos_servo_read_us(Servo *obj)
+{
+    if (obj == nullptr) {
+        return 0;
+    }
+
+    return obj->readMicroseconds();
+}

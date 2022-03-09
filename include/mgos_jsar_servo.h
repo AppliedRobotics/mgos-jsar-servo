@@ -33,6 +33,12 @@ uint8_t mgos_servo_attach_full(Servo *obj, int pin, uint16_t min, uint16_t max);
 void mgos_servo_write_us(Servo *obj, uint16_t value);
 
 /*
+ Read microseconds
+ */
+uint16_t mgos_servo_read_us(Servo *obj);
+
+
+/*
  * deletes the object by calling the destructor
  */
 //void mgos_servo_delete(Servo* pThis);
