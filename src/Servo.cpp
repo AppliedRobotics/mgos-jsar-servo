@@ -8,13 +8,13 @@ uint8_t servos[MAX_SERVOS];
 
 Servo::Servo()
 {
-    if (ServoCount < MAX_SERVOS)
+    if (ServoCount < MAX_SERVOS) 
     {
-        servoIndex = ServoCount++;
-    }
-    else
+        servoIndex_ = ServoCount++;
+    } 
+    else 
     {
-        servoIndex = INVALID_SERVO; // too many servos
+        servoIndex_ = INVALID_SERVO; // too many servos
     }
 }
 
@@ -25,20 +25,21 @@ uint8_t Servo::attach(uint8_t pin)
 
 uint8_t Servo::attach(uint8_t pin, uint16_t min, uint16_t max)
 {
-    servos[servoIndex] = pin;
+    servos[servoIndex_] = pin;
 
     float duty = (float) DEFAULT_PULSE_WIDTH / PERIOD_US;
     mgos_pwm_set(pin, PWM_FREQ, duty);
 
-    min = (MIN_PULSE_WIDTH - min);
-    max = (MAX_PULSE_WIDTH - max);
-    return servoIndex;
+    us_ = DEFAULT_PULSE_WIDTH;
+    min_ = min;
+    max_ = max;
+    return servoIndex_;
 }
 
 void Servo::detach()
 {
-    //delete servos[this->servoIndex];
-    //servos[this->servoIndex] = NULL;
+    //delete servos[this->servoIndex_];
+    //servos[this->servoIndex_] = NULL;
 }
 
 void Servo::write(int value)
@@ -58,13 +59,15 @@ void Servo::write(int value)
 
 void Servo::writeMicroseconds(uint16_t value)
 {
-    if (value < MIN_PULSE_WIDTH) // ensure pulse width is valid
-        value = MIN_PULSE_WIDTH;
-    else if (value > MAX_PULSE_WIDTH)
-        value = MAX_PULSE_WIDTH;
+    if (value < min_) // ensure pulse width is valid
+        value = min_;
+    else if (value > max_)
+        value = max_;
 
     float duty = (float) value / PERIOD_US;
-    mgos_pwm_set(servos[servoIndex], PWM_FREQ, duty);
+    if (mgos_pwm_set(servos[servoIndex_], PWM_FREQ, duty) == true) {
+        us_ = value;
+    }
 }
 
 int Servo::read() // return the value as degrees
@@ -73,10 +76,9 @@ int Servo::read() // return the value as degrees
     //return map(readMicroseconds(), SERVO_MIN(), SERVO_MAX(), 0, 180);
 }
 
-int Servo::readMicroseconds()
+uint16_t Servo::readMicroseconds()
 {
-
-    return 0;
+    return us_;
 }
 
 bool Servo::attached()

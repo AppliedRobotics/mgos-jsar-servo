@@ -18,9 +18,14 @@ extern "C"
 Servo* mgos_servo_create();
 
 /*
- creates a servo object using full settings
+ creates a servo object
  */
 uint8_t mgos_servo_attach(Servo * obj, int pin);
+
+/*
+ creates a servo object using full settings
+ */
+uint8_t mgos_servo_attach_full(Servo *obj, int pin, uint16_t min, uint16_t max);
 
 /*
  Write microseconds
