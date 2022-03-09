@@ -59,12 +59,11 @@ void Servo::write(int value)
 
 uint16_t Servo::writeMicroseconds(uint16_t value)
 {
-    /*
     if (value < min_pulse_) // ensure pulse width is valid
         value = min_pulse_;
     else if (value > max_pulse_)
         value = max_pulse_;
-*/
+
     float duty = (float) value / PERIOD_US;
     if (mgos_pwm_set(servos[servoIndex_], PWM_FREQ, duty) == true) {
         us_ = value;

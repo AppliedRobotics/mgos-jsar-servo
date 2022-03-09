@@ -27,8 +27,8 @@ public:
 private:
     uint8_t servoIndex_;               
     uint16_t us_;
-    int8_t min_pulse_;                         
-    int8_t max_pulse_;                         
+    uint16_t min_pulse_;                         
+    uint16_t max_pulse_;                         
 
 };
 
