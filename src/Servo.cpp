@@ -65,7 +65,7 @@ void Servo::writeMicroseconds(uint16_t value)
         value = max_;
 
     float duty = (float) value / PERIOD_US;
-    mgos_pwm_set(servos[servoIndex_], PWM_FREQ, duty) == true);
+    mgos_pwm_set(servos[servoIndex_], PWM_FREQ, duty);
     us_ = value;
     
 }
