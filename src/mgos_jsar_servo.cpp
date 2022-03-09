@@ -37,13 +37,13 @@ uint8_t mgos_servo_attach_full(Servo *obj, int pin, uint16_t min, uint16_t max)
 /*
  Write microseconds
  */
-void mgos_servo_write_us(Servo *obj, uint16_t value)
+uint8_t mgos_servo_write_us(Servo *obj, uint16_t value)
 {
     if (obj == nullptr) {
-        return;
+        return 0;
     }
 
-    obj->writeMicroseconds(value);
+    return obj->writeMicroseconds(value);
 }
 
 /*

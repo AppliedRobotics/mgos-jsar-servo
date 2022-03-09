@@ -31,8 +31,8 @@ uint8_t Servo::attach(uint8_t pin, uint16_t min, uint16_t max)
     mgos_pwm_set(pin, PWM_FREQ, duty);
 
     us_ = DEFAULT_PULSE_WIDTH;
-    min_ = min;
-    max_ = max;
+    min_pulse_ = min;
+    max_pulse_ = max;
     return servoIndex_;
 }
 
@@ -57,17 +57,19 @@ void Servo::write(int value)
     writeMicroseconds(value);*/
 }
 
-void Servo::writeMicroseconds(uint16_t value)
+uint8_t Servo::writeMicroseconds(uint16_t value)
 {
-    if (value < min_) // ensure pulse width is valid
-        value = min_;
-    else if (value > max_)
-        value = max_;
+    if (value < min_pulse_) // ensure pulse width is valid
+        value = min_pulse_;
+    else if (value > max_pulse_)
+        value = max_pulse_;
 
     float duty = (float) value / PERIOD_US;
-    mgos_pwm_set(servos[servoIndex_], PWM_FREQ, duty);
-    us_ = value;
-    
+    if (mgos_pwm_set(servos[servoIndex_], PWM_FREQ, duty) == true) {
+        us_ = value;
+        return 1;
+    }
+    return 0;
 }
 
 int Servo::read() // return the value as degrees
