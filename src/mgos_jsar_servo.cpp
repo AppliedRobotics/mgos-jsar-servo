@@ -57,3 +57,15 @@ uint16_t mgos_servo_read_us(Servo *obj)
 
     return obj->readMicroseconds();
 }
+
+/*
+ Write angle 0 to 180
+ */
+uint16_t mgos_servo_write(Servo *obj, uint16_t value)
+{
+    if (obj == nullptr) {
+        return 0;
+    }
+
+    return obj->write(value);
+}

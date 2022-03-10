@@ -19,7 +19,7 @@ public:
     uint8_t attach(uint8_t pin);           
     uint8_t attach(uint8_t pin, uint16_t min, uint16_t max); 
     void detach();
-    void write(int value);           
+    uint16_t write(uint16_t value);           
     uint16_t writeMicroseconds(uint16_t value);  
     int read();                       
     uint16_t readMicroseconds();            

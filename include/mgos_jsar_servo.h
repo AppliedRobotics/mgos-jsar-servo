@@ -37,6 +37,10 @@ uint16_t mgos_servo_write_us(Servo *obj, uint16_t value);
  */
 uint16_t mgos_servo_read_us(Servo *obj);
 
+/*
+ Write angle  
+ */
+uint16_t mgos_servo_write(Servo *obj, uint16_t value);
 
 /*
  * deletes the object by calling the destructor
