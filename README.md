@@ -4,12 +4,14 @@ Using:
 
    Servo* myservo1;
    
-Atach:
-  myservo1 = mgos_servo_create();
-  mgos_servo_attach(myservo1, 19);
+   myservo1 = mgos_servo_create();
+   
+   mgos_servo_attach(myservo1, 19);
 
 Set angle: 
-  mgos_servo_write(myservo1, value);
+
+   mgos_servo_write(myservo1, value);
   
 Set us:
-  mgos_servo_write_us(myservo1, value);
+
+   mgos_servo_write_us(myservo1, value);
