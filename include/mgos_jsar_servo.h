@@ -43,40 +43,11 @@ uint16_t mgos_servo_read_us(Servo *obj);
 uint16_t mgos_servo_write(Servo *obj, uint16_t value);
 
 /*
- * deletes the object by calling the destructor
+ Read angle
  */
-//void mgos_servo_delete(Servo* pThis);
+uint16_t mgos_servo_read(Servo *obj);
 
-/*
- * generates pwm with "on" time
- * returns onTime if pThis is not null, -1 otherwise
- */
-//int mgos_servo_doTime(Servo* pThis, int onTime);
 
-/*
- * generates pwm with "on" time
- * and stops after timer milliseconds
- * returns onTime if pThis is not null, -1 otherwise
- */
-//int mgos_servo_doTimeWithTimer(Servo* pThis, int onTime, int timer);
-
-/*
- * generates pwm to move the servo to the specified angle
- * returns angle if pThis is not null, -1 otherwise
- */
-//int mgos_servo_doAngle(Servo* pThis, int angle);
-
-/*
- * generates pwm to move the servo to the specified angle
- * and stops after timer milliseconds
- * returns angle if pThis is not null, -1 otherwise
- */
-//int mgos_servo_doAngleWithTimer(Servo* pThis, int angle, int timer);
-
-/*
- * Stops the pwm
- */
-//void mgos_servo_stop(Servo* pThis);
 
 #ifdef __cplusplus
 }

@@ -69,3 +69,15 @@ uint16_t mgos_servo_write(Servo *obj, uint16_t value)
 
     return obj->write(value);
 }
+
+/*
+ Read angle
+ */
+uint16_t mgos_servo_read(Servo *obj)
+{
+    if (obj == nullptr) {
+        return 0;
+    }
+
+    return obj->read();
+}

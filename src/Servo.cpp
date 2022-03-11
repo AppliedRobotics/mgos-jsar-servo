@@ -1,6 +1,6 @@
 #include <mgos.h>
 #include <mgos_pwm.h>
-
+#include <math.h>
 #include "Servo.h"
 
 uint8_t ServoCount = 0;     // the total number of attached servos
@@ -54,11 +54,11 @@ uint16_t Servo::write(uint16_t value)
 
     if (value < 90) {
         degree = (float)(DEFAULT_PULSE_WIDTH - min_pulse_) / 90;
-        return writeMicroseconds(DEFAULT_PULSE_WIDTH - (uint16_t)(degree * (90 - value)));
+        return writeMicroseconds(DEFAULT_PULSE_WIDTH - (uint16_t)round(degree * (90 - value)));
     }
     else if (value > 90) {
         degree = (float)(max_pulse_ - DEFAULT_PULSE_WIDTH) / 90;
-        return writeMicroseconds(DEFAULT_PULSE_WIDTH + (uint16_t)(degree * (value - 90)));
+        return writeMicroseconds(DEFAULT_PULSE_WIDTH + (uint16_t)round(degree * (value - 90)));
     }
     else {
         return writeMicroseconds(DEFAULT_PULSE_WIDTH);
@@ -86,10 +86,21 @@ uint16_t Servo::writeMicroseconds(uint16_t value)
     return 0;
 }
 
-int Servo::read() // return the value as degrees
+uint16_t Servo::read() 
 {
-    return 0;
-    //return map(readMicroseconds(), SERVO_MIN(), SERVO_MAX(), 0, 180);
+    uint16_t degree = 0;
+
+    if (us_ < DEFAULT_PULSE_WIDTH) {
+        degree = (uint16_t) round(90 * ((float)(us_ - min_pulse_) / (DEFAULT_PULSE_WIDTH - min_pulse_)));
+    }
+    else if (us_ > DEFAULT_PULSE_WIDTH) {
+        degree = 90 + (uint16_t) round(90 * (1.0 - ((float)(max_pulse_ - us_) / (max_pulse_ - DEFAULT_PULSE_WIDTH))));
+    }
+    else {
+        degree = 90;
+    }
+
+    return degree;
 }
 
 uint16_t Servo::readMicroseconds()
@@ -99,5 +110,5 @@ uint16_t Servo::readMicroseconds()
 
 bool Servo::attached()
 {
-    return 0;
+    return  servos[servoIndex_];
 }

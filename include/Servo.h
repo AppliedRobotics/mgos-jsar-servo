@@ -21,12 +21,13 @@ public:
     void detach();
     uint16_t write(uint16_t value);           
     uint16_t writeMicroseconds(uint16_t value);  
-    int read();                       
+    uint16_t read();                       
     uint16_t readMicroseconds();            
     bool attached();                   
 private:
     uint8_t servoIndex_;               
     uint16_t us_;
+    uint16_t angle_;
     uint16_t min_pulse_;                         
     uint16_t max_pulse_;                         
 
