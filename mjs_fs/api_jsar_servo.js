@@ -26,7 +26,7 @@ let Servo = {
             return Servo._write_us(this.servo, us);
         },
 
-        _read_us: function () {
+        read_us: function () {
             return Servo._read_us(this.servo);
         },
 
